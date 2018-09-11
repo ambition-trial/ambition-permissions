@@ -39,9 +39,12 @@ class PermissionsUpdater(EdcPermissionsUpdater):
         self.ensure_users_in_group(PII, users_by_groups=[CLINIC])
         # ensure in PII_VIEW group
         self.ensure_users_in_group(PII_VIEW, users_by_groups=[LAB, PHARMACY])
+        # ensure NOT in CLINIC group
+        self.ensure_users_not_in_group(
+            PII, users_by_groups=[TMG, AUDITOR, LAB, PHARMACY])
         # ensure NOT in PII group
         self.ensure_users_not_in_group(
-            PII, users_by_groups=[TMG, AUDITOR])
+            PII, users_by_groups=[TMG, AUDITOR, LAB, PHARMACY])
         self.ensure_users_not_in_group(
             PII_VIEW, users_by_groups=[TMG, AUDITOR])
         # ensure NOT in RANDO group
