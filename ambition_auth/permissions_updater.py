@@ -69,6 +69,11 @@ class PermissionsUpdater(EdcPermissionsUpdater):
             content_type__model='subjectrequisition',
             codename__startswith='view')
         group.permissions.add(permission)
+        permission = Permission.objects.get(
+            content_type__app_label='ambition_subject',
+            content_type__model='subjectrequisition',
+            codename__startswith='change')
+        group.permissions.add(permission)
         self.add_navbar_permissions(
             group=group, codenames=['nav_subject_section'])
 
