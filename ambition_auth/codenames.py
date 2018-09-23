@@ -578,6 +578,7 @@ CODENAMES = {
         'view_aeinitial',
         'view_aetmg',
         'view_antibiotictreatment',
+        'view_deathreport',
         'view_deathreporttmg',
         'view_historicalactionitem',
         'view_historicalactionitemupdate',
