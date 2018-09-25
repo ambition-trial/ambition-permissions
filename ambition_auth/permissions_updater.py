@@ -127,6 +127,10 @@ class PermissionsUpdater(EdcPermissionsUpdater):
                 content_type__app_label__in=['ambition_prn'],
                 content_type__model__in=['deathreporttmg']):
             group.permissions.add(permission)
+        permission = Permission.objects.get(
+            content_type__app_label='ambition_prn',
+            codename='view_deathreport')
+        group.permissions.add(permission)
         Permission.objects.get(
             content_type__app_label='edc_navbar',
             codename='nav_tmg_section')
