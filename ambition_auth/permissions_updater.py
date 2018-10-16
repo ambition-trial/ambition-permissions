@@ -63,6 +63,16 @@ class PermissionsUpdater(EdcPermissionsUpdater):
         permission = Permission.objects.get(codename='view_tmg_listboard')
         group.permissions.remove(permission)
 
+        for group_name in self.group_names:
+            # ensure PII codenames not any other group
+            if group_name not in [PII, PII_VIEW]:
+                codenames = [x.codename for x in Permission.objects.filter(
+                    group__name=group_name)]
+                deleted = Permission.objects.filter(
+                    group__name=group_name, codename__in=[x for x in codenames if x in PII]).delete()
+                if deleted[0]:
+                    print(group_name, deleted)
+
     def extra_lab_group_permissions(self, group):
         permission = Permission.objects.get(
             content_type__app_label='ambition_subject',
@@ -122,6 +132,17 @@ class PermissionsUpdater(EdcPermissionsUpdater):
         for permission in Permission.objects.filter(
                 content_type__app_label__in=['ambition_ae'],
                 codename__startswith='view'):
+            group.permissions.add(permission)
+        for permission in Permission.objects.filter(
+                content_type__app_label__in=['ambition_subject'],
+                codename__startswith='view').exclude(
+                    content_type__model__in=[
+                        'subjectconsent', 'subjectreconsent']):
+            group.permissions.add(permission)
+        for permission in Permission.objects.filter(
+                content_type__app_label__in=['edc_appointment'],
+                content_type__model__in=['appointment']):
+            group.permissions.add(permission)
             group.permissions.add(permission)
         for permission in Permission.objects.filter(
                 content_type__app_label__in=['ambition_prn'],
