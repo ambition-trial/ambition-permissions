@@ -1,17 +1,21 @@
+import sys
+
+from django.conf import settings
 from django.core.checks import Warning, Error, register
 from edc_permissions.permissions_inspector import PermissionsInspector
 from edc_permissions.permissions_inspector import PermissionsInspectorError
 from edc_permissions.permissions_inspector import PermissionsInspectorWarning
 
+from .codenames import CODENAMES
 from .group_names import RANDO, TMG
-from ambition_auth.codenames import CODENAMES
-import sys
 
 
 @register()
 def ambition_permission_check(app_configs, **kwargs):
     errors = []
-    if 'migrate' not in sys.argv and 'makemigrations' not in sys.argv:
+    if (settings.APP_NAME == 'ambition_edc'
+            and 'migrate' not in sys.argv
+            and 'makemigrations' not in sys.argv):
         default_codenames = CODENAMES
         inspector = PermissionsInspector(
             default_codenames=default_codenames,

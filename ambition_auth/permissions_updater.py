@@ -9,6 +9,13 @@ from .group_names import RANDO, TMG
 
 class PermissionsUpdater(EdcPermissionsUpdater):
 
+    """
+    A class to setup persistent access permissions for
+    models and other objects.
+
+    After making changes run migrate and check.
+    """
+
     extra_group_names = [RANDO, TMG]
 
     extra_pii_models = [
@@ -27,7 +34,8 @@ class PermissionsUpdater(EdcPermissionsUpdater):
         settings.APP_NAME: [
             ('view_screening_listboard', 'Can view Screening Listboard'),
             ('view_subject_listboard', 'Can view Subject Listboard'),
-            ('view_tmg_listboard', 'Can view TMG Listboard')],
+            ('view_tmg_listboard', 'Can view TMG Listboard'),
+            ('view_subject_review_listboard', 'Can view Subject Review Listboard')],
     }
 
     def __init__(self, **kwargs):
@@ -59,6 +67,10 @@ class PermissionsUpdater(EdcPermissionsUpdater):
             self.add_dashboard_permissions(
                 group, codename='view_tmg_listboard')
             self.add_dashboard_permissions(group, dashboard_category=LAB)
+        for group in Group.objects.filter(name__in=[TMG, AUDITOR]):
+            self.add_dashboard_permissions(
+                group, codename='view_subject_review_listboard')
+
         group = Group.objects.get(name=LAB)
         permission = Permission.objects.get(codename='view_tmg_listboard')
         group.permissions.remove(permission)
@@ -69,7 +81,8 @@ class PermissionsUpdater(EdcPermissionsUpdater):
                 codenames = [x.codename for x in Permission.objects.filter(
                     group__name=group_name)]
                 deleted = Permission.objects.filter(
-                    group__name=group_name, codename__in=[x for x in codenames if x in PII]).delete()
+                    group__name=group_name, codename__in=[
+                        x for x in codenames if x in PII]).delete()
                 if deleted[0]:
                     print(group_name, deleted)
 
