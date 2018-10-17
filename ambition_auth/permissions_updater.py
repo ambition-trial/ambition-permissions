@@ -81,7 +81,8 @@ class PermissionsUpdater(EdcPermissionsUpdater):
                 codenames = [x.codename for x in Permission.objects.filter(
                     group__name=group_name)]
                 deleted = Permission.objects.filter(
-                    group__name=group_name, codename__in=[x for x in codenames if x in PII]).delete()
+                    group__name=group_name, codename__in=[
+                        x for x in codenames if x in PII]).delete()
                 if deleted[0]:
                     print(group_name, deleted)
 
