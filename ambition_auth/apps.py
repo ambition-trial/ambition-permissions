@@ -8,3 +8,6 @@ class AppConfig(DjangoApponfig):
     name = 'ambition_auth'
     verbose_name = 'Ambition Authentication and Permissions'
     register(ambition_permission_check)
+
+    def ready(self):
+        from .signals import update_notifications_for_group
