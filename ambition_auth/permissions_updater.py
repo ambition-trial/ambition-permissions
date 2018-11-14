@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib.auth.models import Group, Permission
-from edc_permissions.constants import CLINIC, LAB, AUDITOR, ADMINISTRATION, PII, PII_VIEW
+from edc_permissions.constants import ADMINISTRATION, PII, PII_VIEW
+from edc_permissions.constants import CLINIC, LAB, AUDITOR
 from edc_permissions.constants.group_names import PHARMACY
 from edc_permissions.permissions_updater import PermissionsUpdater as EdcPermissionsUpdater
 
@@ -97,8 +98,9 @@ class PermissionsUpdater(EdcPermissionsUpdater):
             content_type__model='subjectrequisition',
             codename__startswith='change')
         group.permissions.add(permission)
-        self.add_navbar_permissions(
-            group=group, codenames=['nav_subject_section'])
+        self.add_permissions(
+            group=group,
+            codenames=['edc_navbar.nav_subject_section'])
 
     def extra_clinic_group_permissions(self, group):
         exclude_models = [
@@ -113,23 +115,27 @@ class PermissionsUpdater(EdcPermissionsUpdater):
                           'historicaldeathreporttmg',
                           'historicalsubjectconsent',
                           'historicalsubjectreconsent']).delete()
+
         group.permissions.filter(codename__contains='historical').exclude(
             codename__startswith='view').delete()
+
         group.permissions.filter(
             codename__in=['view_historicalaetmg',
                           'view_historicaldeathreporttmg',
                           'view_historicalsubjectconsent',
                           'view_historicalsubjectreconsent']).delete()
+
         # allow CLINIC users to view AeTmg
         for permission in Permission.objects.filter(
                 content_type__app_label__in=['ambition_ae'],
                 content_type__model__in=['aetmg'],
                 codename__startswith='view'):
             group.permissions.add(permission)
-        self.add_navbar_permissions(
+
+        self.add_permissions(
             group=group, codenames=[
-                'nav_subject_section',
-                'nav_screening_section'])
+                'edc_navbar.nav_subject_section',
+                'edc_navbar.nav_screening_section'])
 
     def update_tmg_group_permissions(self):
         group_name = TMG
@@ -169,8 +175,9 @@ class PermissionsUpdater(EdcPermissionsUpdater):
             content_type__app_label='edc_navbar',
             codename='nav_tmg_section')
         group.permissions.add(permission)
-        self.add_navbar_permissions(
-            group=group, codenames=['nav_tmg_section'])
+        self.add_permissions(
+            group=group,
+            codenames=['edc_navbar.nav_tmg_section'])
 
     def update_rando_group_permissions(self):
         group_name = RANDO
