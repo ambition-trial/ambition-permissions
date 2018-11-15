@@ -41,9 +41,9 @@ def ambition_permission_check(app_configs, **kwargs):
                             id='ambition_auth.W001'))
             except PermissionsInspectorError as e:
                 errors.append(
-                    Error(str(e),
-                          hint=('Check permissions for group using the '
-                                'PermissionInspector.'),
-                          obj=group_name,
-                          id='ambition_auth.W001'))
+                    Warning(str(e),
+                            hint=('Check permissions for group using the '
+                                  'PermissionInspector.'),
+                            obj=group_name,
+                            id='ambition_auth.W002'))
     return errors
