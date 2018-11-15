@@ -4,5 +4,8 @@ everyone = [
     'auth.view_permission',
     'auth.view_user',
     'edc_auth.view_userprofile',
+    'edc_navbar.nav_administration',
+    'edc_navbar.nav_home',
+    'edc_navbar.nav_logout',
     'sites.view_site',
 ]

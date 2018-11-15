@@ -29,6 +29,7 @@ class PermissionsUpdater(EdcPermissionsUpdater):
         'ambition_screening',
         'ambition_subject',
         'ambition_prn',
+        'ambition_lists',
     ]
 
     extra_dashboard_codenames = {
@@ -103,6 +104,9 @@ class PermissionsUpdater(EdcPermissionsUpdater):
             codenames=['edc_navbar.nav_subject_section'])
 
     def extra_clinic_group_permissions(self, group):
+
+        # add basic permissions. Exclude PII models here as they will
+        # be included in another group (e.g. PII or PI_VIEW)
         exclude_models = [
             m.split('.')[1] for m in self.pii_models] + ['aetmg', 'deathreporttmg']
         for permission in Permission.objects.filter(content_type__app_label__in=[
@@ -110,20 +114,12 @@ class PermissionsUpdater(EdcPermissionsUpdater):
                 'edc_offstudy']).exclude(
                     content_type__model__in=exclude_models):
             group.permissions.add(permission)
-        group.permissions.filter(
-            codename__in=['historicalaetmg',
-                          'historicaldeathreporttmg',
-                          'historicalsubjectconsent',
-                          'historicalsubjectreconsent']).delete()
 
-        group.permissions.filter(codename__contains='historical').exclude(
-            codename__startswith='view').delete()
-
-        group.permissions.filter(
-            codename__in=['view_historicalaetmg',
-                          'view_historicaldeathreporttmg',
-                          'view_historicalsubjectconsent',
-                          'view_historicalsubjectreconsent']).delete()
+        # allow CLINIC users to view Ambition list models
+        for permission in Permission.objects.filter(
+                content_type__app_label__in=['ambition_lists'],
+                codename__startswith='view'):
+            group.permissions.add(permission)
 
         # allow CLINIC users to view AeTmg
         for permission in Permission.objects.filter(
@@ -131,6 +127,19 @@ class PermissionsUpdater(EdcPermissionsUpdater):
                 content_type__model__in=['aetmg'],
                 codename__startswith='view'):
             group.permissions.add(permission)
+
+        group.permissions.filter(
+            codename__in=['view_historicalaetmg',
+                          'view_historicaldeathreporttmg',
+                          'view_historicalsubjectconsent',
+                          'view_historicalsubjectreconsent']).delete()
+        group.permissions.filter(
+            codename__in=['historicalaetmg',
+                          'historicaldeathreporttmg',
+                          'historicalsubjectconsent',
+                          'historicalsubjectreconsent']).delete()
+        group.permissions.filter(codename__contains='historical').exclude(
+            codename__startswith='view').delete()
 
         self.add_permissions(
             group=group, codenames=[
@@ -159,6 +168,10 @@ class PermissionsUpdater(EdcPermissionsUpdater):
                         'subjectconsent', 'subjectreconsent']):
             group.permissions.add(permission)
         for permission in Permission.objects.filter(
+                content_type__app_label__in=['ambition_lists'],
+                codename__startswith='view'):
+            group.permissions.add(permission)
+        for permission in Permission.objects.filter(
                 content_type__app_label__in=['edc_appointment'],
                 content_type__model__in=['appointment']):
             group.permissions.add(permission)
@@ -166,6 +179,19 @@ class PermissionsUpdater(EdcPermissionsUpdater):
         for permission in Permission.objects.filter(
                 content_type__app_label__in=['ambition_prn'],
                 content_type__model__in=['deathreporttmg']):
+            group.permissions.add(permission)
+        for permission_codename in ['ambition_prn.view_amphotericinmisseddoses',
+                                    'ambition_prn.view_fluconazolemisseddoses',
+                                    'ambition_prn.view_flucytosinemisseddoses',
+                                    'ambition_prn.view_historicalamphotericinmisseddoses',
+                                    'ambition_prn.view_historicalfluconazolemisseddoses',
+                                    'ambition_prn.view_historicalflucytosinemisseddoses',
+                                    'ambition_prn.view_historicalsignificantdiagnoses',
+                                    'ambition_prn.view_significantdiagnoses']:
+            app_label, codename = permission_codename.split('.')
+            permission = Permission.objects.get(
+                content_type__app_label=app_label,
+                codename=codename)
             group.permissions.add(permission)
         permission = Permission.objects.get(
             content_type__app_label='ambition_prn',

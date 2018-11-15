@@ -16,6 +16,7 @@ auditor = [
     'ambition_lists.view_infiltratelocation',
     'ambition_lists.view_medication',
     'ambition_lists.view_misseddoses',
+    'ambition_lists.view_neurological',
     'ambition_lists.view_otherdrug',
     'ambition_lists.view_significantnewdiagnosis',
     'ambition_lists.view_symptom',
