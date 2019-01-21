@@ -98,6 +98,7 @@ auditor = [
     'edc_action_item.view_actionitem',
     'edc_action_item.view_actiontype',
     'edc_action_item.view_historicalactionitem',
+    'edc_action_item.view_historicalreference',
     'edc_action_item.view_reference',
     'edc_appointment.view_appointment',
     'edc_appointment.view_historicalappointment',
