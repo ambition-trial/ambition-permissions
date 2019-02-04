@@ -1,4 +1,4 @@
-|pypi| |travis| |coverage|
+|pypi| |travis| |codecov| |downloads|
 
 ambition-auth
 -------------
@@ -11,6 +11,9 @@ See also ``edc-permissions``.
 .. |travis| image:: https://travis-ci.com/ambition-trial/ambition-auth.svg?branch=develop
     :target: https://travis-ci.com/ambition-trial/ambition-auth
     
-.. |coverage| image:: https://coveralls.io/repos/github/ambition-trial/ambition-auth/badge.svg?branch=develop
-    :target: https://coveralls.io/github/ambition-trial/ambition-auth?branch=develop
+.. |codecov| image:: https://codecov.io/gh/ambition-trial/ambition-auth/branch/develop/graph/badge.svg
+  :target: https://codecov.io/gh/ambition-trial/ambition-auth
+
+.. |downloads| image:: https://pepy.tech/badge/ambition-auth
+   :target: https://pepy.tech/project/ambition-auth
 
