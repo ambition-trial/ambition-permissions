@@ -1,3 +1,1 @@
-rando = [
-    'ambition_rando.display_randomization',
-]
+rando = ["ambition_rando.display_randomization"]

@@ -5,8 +5,18 @@ Validated with the PermissionsInspector in tests and system checks.
 """
 
 from edc_permissions.constants import (
-    AUDITOR, LAB, EVERYONE, PII, ADMINISTRATION, PHARMACY,
-    ACCOUNT_MANAGER, CLINIC, PII_VIEW, EXPORT, DATA_MANAGER)
+    AUDITOR,
+    LAB,
+    EVERYONE,
+    PII,
+    ADMINISTRATION,
+    PHARMACY,
+    ACCOUNT_MANAGER,
+    CLINIC,
+    PII_VIEW,
+    EXPORT,
+    DATA_MANAGER,
+)
 
 from ..group_names import TMG, RANDO
 from .account_manager import account_manager

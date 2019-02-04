@@ -5,6 +5,6 @@ from .system_checks import ambition_permission_check
 
 
 class AppConfig(DjangoApponfig):
-    name = 'ambition_auth'
-    verbose_name = 'Ambition Authentication and Permissions'
+    name = "ambition_auth"
+    verbose_name = "Ambition Authentication and Permissions"
     register(ambition_permission_check)
