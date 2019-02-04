@@ -1,3 +1,1 @@
-administration = [
-    'edc_navbar.nav_administration',
-]
+administration = ["edc_navbar.nav_administration"]
