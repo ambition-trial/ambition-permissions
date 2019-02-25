@@ -47,8 +47,7 @@ class PermissionsUpdater(EdcPermissionsUpdater):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         # ensure in ADMINISTRATION group
-        self.ensure_users_in_group(
-            ADMINISTRATION, users_by_groups=[CLINIC, LAB, TMG])
+        self.ensure_users_in_group(ADMINISTRATION, users_by_groups=[CLINIC, LAB, TMG])
         # ensure in PII group
         self.ensure_users_in_group(PII, users_by_groups=[CLINIC])
         # ensure in PII_VIEW group
@@ -61,19 +60,14 @@ class PermissionsUpdater(EdcPermissionsUpdater):
         self.ensure_users_not_in_group(
             PII, users_by_groups=[TMG, AUDITOR, LAB, PHARMACY]
         )
-        self.ensure_users_not_in_group(
-            PII_VIEW, users_by_groups=[TMG, AUDITOR])
+        self.ensure_users_not_in_group(PII_VIEW, users_by_groups=[TMG, AUDITOR])
         # ensure NOT in RANDO group
-        self.ensure_users_not_in_group(
-            RANDO, users_by_groups=[TMG, AUDITOR, LAB])
+        self.ensure_users_not_in_group(RANDO, users_by_groups=[TMG, AUDITOR, LAB])
 
         for group in Group.objects.filter(name__in=[CLINIC, TMG, LAB, AUDITOR]):
-            self.add_dashboard_permissions(
-                group, codename="view_screening_listboard")
-            self.add_dashboard_permissions(
-                group, codename="view_subject_listboard")
-            self.add_dashboard_permissions(
-                group, codename="view_tmg_listboard")
+            self.add_dashboard_permissions(group, codename="view_screening_listboard")
+            self.add_dashboard_permissions(group, codename="view_subject_listboard")
+            self.add_dashboard_permissions(group, codename="view_tmg_listboard")
             self.add_dashboard_permissions(group, dashboard_category=LAB)
         for group in Group.objects.filter(name__in=[TMG, AUDITOR]):
             self.add_dashboard_permissions(
@@ -82,8 +76,8 @@ class PermissionsUpdater(EdcPermissionsUpdater):
 
         group = Group.objects.get(name=LAB)
         permission = Permission.objects.get(
-            content_type__app_label='edc_dashboard',
-            codename="view_tmg_listboard")
+            content_type__app_label="edc_dashboard", codename="view_tmg_listboard"
+        )
         group.permissions.remove(permission)
 
         pii_group_names = [PII, PII_VIEW]
@@ -100,7 +94,8 @@ class PermissionsUpdater(EdcPermissionsUpdater):
                 ]
                 group = Group.objects.get(name=group_name)
                 for permission in Permission.objects.filter(
-                        codename__in=[x for x in codenames if x in pii_codenames]):
+                    codename__in=[x for x in codenames if x in pii_codenames]
+                ):
                     group.permissions.remove(permission)
 
     def extra_lab_group_permissions(self, group):
@@ -117,11 +112,13 @@ class PermissionsUpdater(EdcPermissionsUpdater):
         ):
             group.permissions.add(permission)
 
-        self.add_permissions_to_group(group=group, codenames=[
-            "edc_navbar.nav_subject_section"])
+        self.add_permissions_to_group(
+            group=group, codenames=["edc_navbar.nav_subject_section"]
+        )
 
-        self.add_permissions_to_group(group=group, codenames=[
-            "edc_navbar.nav_subject_section"])
+        self.add_permissions_to_group(
+            group=group, codenames=["edc_navbar.nav_subject_section"]
+        )
 
     def extra_clinic_group_permissions(self, group):
 
@@ -192,8 +189,7 @@ class PermissionsUpdater(EdcPermissionsUpdater):
             group.permissions.add(permission)
             group.permissions.add(permission)
         for permission in Permission.objects.filter(
-            content_type__app_label="ambition_prn",
-            content_type__model="deathreporttmg",
+            content_type__app_label="ambition_prn", content_type__model="deathreporttmg"
         ):
             group.permissions.add(permission)
 
@@ -219,16 +215,16 @@ class PermissionsUpdater(EdcPermissionsUpdater):
         )
         group.permissions.add(permission)
 
-        self.add_permissions_to_group(group=group, codenames=[
-            "edc_navbar.nav_tmg_section"])
+        self.add_permissions_to_group(
+            group=group, codenames=["edc_navbar.nav_tmg_section"]
+        )
 
     def update_rando_group_permissions(self):
         group_name = RANDO
         group = Group.objects.get(name=group_name)
         group.permissions.clear()
         for permission in Permission.objects.filter(
-            content_type__app_label="ambition_rando",
-            codename="view_randomizationlist",
+            content_type__app_label="ambition_rando", codename="view_randomizationlist"
         ):
             group.permissions.add(permission)
         permission = Permission.objects.get(
