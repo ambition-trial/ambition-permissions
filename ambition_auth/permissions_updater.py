@@ -75,37 +75,50 @@ class PermissionsUpdater(EdcPermissionsUpdater):
             )
 
         group = Group.objects.get(name=LAB)
-        permission = Permission.objects.get(codename="view_tmg_listboard")
+        permission = Permission.objects.get(
+            content_type__app_label="edc_dashboard", codename="view_tmg_listboard"
+        )
         group.permissions.remove(permission)
 
+        pii_group_names = [PII, PII_VIEW]
+        pii_codenames = [
+            x.codename
+            for x in Permission.objects.filter(group__name__in=pii_group_names)
+        ]
         for group_name in self.group_names:
-            # ensure PII codenames not any other group
-            if group_name not in [PII, PII_VIEW]:
+            # ensure PII codenames not in any other group
+            if group_name not in pii_group_names:
                 codenames = [
                     x.codename
                     for x in Permission.objects.filter(group__name=group_name)
                 ]
-                deleted = Permission.objects.filter(
-                    group__name=group_name,
-                    codename__in=[x for x in codenames if x in PII],
-                ).delete()
-                if deleted[0]:
-                    print(group_name, deleted)
+                group = Group.objects.get(name=group_name)
+                for permission in Permission.objects.filter(
+                    codename__in=[x for x in codenames if x in pii_codenames]
+                ):
+                    group.permissions.remove(permission)
 
     def extra_lab_group_permissions(self, group):
-        permission = Permission.objects.get(
+        for permission in Permission.objects.filter(
             content_type__app_label="ambition_subject",
             content_type__model="subjectrequisition",
             codename__startswith="view",
-        )
-        group.permissions.add(permission)
-        permission = Permission.objects.get(
+        ):
+            group.permissions.add(permission)
+        for permission in Permission.objects.filter(
             content_type__app_label="ambition_subject",
             content_type__model="subjectrequisition",
             codename__startswith="change",
+        ):
+            group.permissions.add(permission)
+
+        self.add_permissions_to_group(
+            group=group, codenames=["edc_navbar.nav_subject_section"]
         )
-        group.permissions.add(permission)
-        self.add_permissions(group=group, codenames=["edc_navbar.nav_subject_section"])
+
+        self.add_permissions_to_group(
+            group=group, codenames=["edc_navbar.nav_subject_section"]
+        )
 
     def extra_clinic_group_permissions(self, group):
 
@@ -139,27 +152,7 @@ class PermissionsUpdater(EdcPermissionsUpdater):
         ):
             group.permissions.add(permission)
 
-        group.permissions.filter(
-            codename__in=[
-                "view_historicalaetmg",
-                "view_historicaldeathreporttmg",
-                "view_historicalsubjectconsent",
-                "view_historicalsubjectreconsent",
-            ]
-        ).delete()
-        group.permissions.filter(
-            codename__in=[
-                "historicalaetmg",
-                "historicaldeathreporttmg",
-                "historicalsubjectconsent",
-                "historicalsubjectreconsent",
-            ]
-        ).delete()
-        group.permissions.filter(codename__contains="historical").exclude(
-            codename__startswith="view"
-        ).delete()
-
-        self.add_permissions(
+        self.add_permissions_to_group(
             group=group,
             codenames=[
                 "edc_navbar.nav_subject_section",
@@ -195,47 +188,46 @@ class PermissionsUpdater(EdcPermissionsUpdater):
             group.permissions.add(permission)
         for permission in Permission.objects.filter(
             content_type__app_label__in=["edc_appointment"],
-            content_type__model__in=["appointment"],
+            content_type__model__in=["appointment", "historicalappointment"],
         ):
-            group.permissions.add(permission)
             group.permissions.add(permission)
         for permission in Permission.objects.filter(
-            content_type__app_label__in=["ambition_prn"],
-            content_type__model__in=["deathreporttmg"],
+            content_type__app_label="ambition_prn", content_type__model="deathreporttmg"
         ):
             group.permissions.add(permission)
-        for permission_codename in [
-            "ambition_prn.view_amphotericinmisseddoses",
-            "ambition_prn.view_fluconazolemisseddoses",
-            "ambition_prn.view_flucytosinemisseddoses",
-            "ambition_prn.view_historicalamphotericinmisseddoses",
-            "ambition_prn.view_historicalfluconazolemisseddoses",
-            "ambition_prn.view_historicalflucytosinemisseddoses",
-            "ambition_prn.view_historicalsignificantdiagnoses",
-            "ambition_prn.view_significantdiagnoses",
-        ]:
-            app_label, codename = permission_codename.split(".")
-            permission = Permission.objects.get(
-                content_type__app_label=app_label, codename=codename
-            )
-            group.permissions.add(permission)
+
         permission = Permission.objects.get(
             content_type__app_label="ambition_prn", codename="view_deathreport"
         )
         group.permissions.add(permission)
+
+        codenames = [
+            "ambition_prn.view_amphotericinmisseddoses",
+            "ambition_prn.view_fluconazolemisseddoses",
+            "ambition_prn.view_flucytosinemisseddoses",
+            "ambition_prn.view_significantdiagnoses",
+            "ambition_prn.view_historicalamphotericinmisseddoses",
+            "ambition_prn.view_historicalfluconazolemisseddoses",
+            "ambition_prn.view_historicalflucytosinemisseddoses",
+            "ambition_prn.view_historicalsignificantdiagnoses",
+        ]
+        self.add_permissions_to_group(group=group, codenames=codenames)
+
         Permission.objects.get(
             content_type__app_label="edc_navbar", codename="nav_tmg_section"
         )
         group.permissions.add(permission)
-        self.add_permissions(group=group, codenames=["edc_navbar.nav_tmg_section"])
+
+        self.add_permissions_to_group(
+            group=group, codenames=["edc_navbar.nav_tmg_section"]
+        )
 
     def update_rando_group_permissions(self):
         group_name = RANDO
         group = Group.objects.get(name=group_name)
         group.permissions.clear()
         for permission in Permission.objects.filter(
-            content_type__app_label="ambition_rando",
-            codename="ambition_rando.view_randomizationlist",
+            content_type__app_label="ambition_rando", codename="view_randomizationlist"
         ):
             group.permissions.add(permission)
         permission = Permission.objects.get(

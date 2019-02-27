@@ -1,7 +1,7 @@
 import sys
 
 from django.conf import settings
-from django.core.checks import Warning, Error, register
+from django.core.checks import Warning, register
 from edc_permissions.permissions_inspector import PermissionsInspector
 from edc_permissions.permissions_inspector import PermissionsInspectorError
 from edc_permissions.permissions_inspector import PermissionsInspectorWarning
