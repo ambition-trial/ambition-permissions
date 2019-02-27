@@ -174,6 +174,10 @@ class PermissionsUpdater(EdcPermissionsUpdater):
         ):
             group.permissions.add(permission)
         for permission in Permission.objects.filter(
+            content_type__app_label__in=["ambition_ae"], codename__startswith="view"
+        ):
+            group.permissions.add(permission)
+        for permission in Permission.objects.filter(
             content_type__app_label__in=["ambition_subject"],
             codename__startswith="view",
         ).exclude(content_type__model__in=["subjectconsent", "subjectreconsent"]):
@@ -184,9 +188,8 @@ class PermissionsUpdater(EdcPermissionsUpdater):
             group.permissions.add(permission)
         for permission in Permission.objects.filter(
             content_type__app_label__in=["edc_appointment"],
-            content_type__model__in=["appointment"],
+            content_type__model__in=["appointment", "historicalappointment"],
         ):
-            group.permissions.add(permission)
             group.permissions.add(permission)
         for permission in Permission.objects.filter(
             content_type__app_label="ambition_prn", content_type__model="deathreporttmg"
