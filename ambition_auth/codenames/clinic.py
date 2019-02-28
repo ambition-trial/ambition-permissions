@@ -244,6 +244,7 @@ clinic = [
     "edc_dashboard.view_lab_requisition_listboard",
     "edc_dashboard.view_lab_result_listboard",
     "edc_dashboard.view_screening_listboard",
+    "edc_dashboard.view_subject_review_listboard",
     "edc_dashboard.view_subject_listboard",
     "edc_dashboard.view_tmg_listboard",
     "edc_navbar.nav_lab_requisition",
