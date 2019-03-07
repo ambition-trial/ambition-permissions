@@ -1,2 +1,2 @@
 faker==1.0.2
-model-mommy
+model-mommy==1.6.0
