@@ -1,4 +1,4 @@
-|pypi| |travis| |codecov| |downloads|
+|pypi| |travis| |codecov| |downloads| |pyup|
 
 ambition-auth
 -------------
@@ -17,3 +17,6 @@ See also ``edc-permissions``.
 .. |downloads| image:: https://pepy.tech/badge/ambition-auth
    :target: https://pepy.tech/project/ambition-auth
 
+.. |pyup| image:: https://pyup.io/repos/github/ambition-trial/ambition-auth/shield.svg
+    :target: https://pyup.io/repos/github/ambition-trial/ambition-auth/
+    :alt: Updates
