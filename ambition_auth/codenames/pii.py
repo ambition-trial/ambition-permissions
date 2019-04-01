@@ -1,4 +1,6 @@
-pii = [
+from edc_permissions.codenames import pii
+
+pii += [
     "ambition_screening.add_subjectscreening",
     "ambition_screening.change_subjectscreening",
     "ambition_screening.delete_subjectscreening",
@@ -14,16 +16,5 @@ pii = [
     "ambition_subject.view_historicalsubjectreconsent",
     "ambition_subject.view_subjectconsent",
     "ambition_subject.view_subjectreconsent",
-    "edc_locator.add_subjectlocator",
-    "edc_locator.change_subjectlocator",
-    "edc_locator.delete_subjectlocator",
-    "edc_locator.view_historicalsubjectlocator",
-    "edc_locator.view_subjectlocator",
-    "edc_registration.display_dob",
-    "edc_registration.display_firstname",
-    "edc_registration.display_identity",
-    "edc_registration.display_initials",
-    "edc_registration.display_lastname",
-    "edc_registration.view_historicalregisteredsubject",
-    "edc_registration.view_registeredsubject",
 ]
+pii.sort()

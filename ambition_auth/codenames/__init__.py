@@ -4,6 +4,15 @@ Validated with the PermissionsInspector in tests and system checks.
 
 """
 
+from edc_permissions.codenames import (
+    account_manager,
+    administration,
+    data_manager,
+    everyone,
+    export,
+    lab,
+    pharmacy,
+)
 from edc_permissions.constants import (
     AUDITOR,
     LAB,
@@ -19,17 +28,10 @@ from edc_permissions.constants import (
 )
 
 from ..group_names import TMG, RANDO
-from .account_manager import account_manager
-from .administration import administration
 from .auditor import auditor
 from .clinic import clinic
-from .data_manager import data_manager
-from .everyone import everyone
-from .export import export
-from .lab import lab
-from .pharmacy import pharmacy
-from .pii import pii
 from .pii_view import pii_view
+from .pii import pii
 from .rando import rando
 from .tmg import tmg
 
