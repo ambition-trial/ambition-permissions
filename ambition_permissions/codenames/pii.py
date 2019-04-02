@@ -6,15 +6,10 @@ pii += [
     "ambition_screening.delete_subjectscreening",
     "ambition_screening.view_historicalsubjectscreening",
     "ambition_screening.view_subjectscreening",
-    "ambition_subject.add_subjectconsent",
     "ambition_subject.add_subjectreconsent",
-    "ambition_subject.change_subjectconsent",
     "ambition_subject.change_subjectreconsent",
-    "ambition_subject.delete_subjectconsent",
     "ambition_subject.delete_subjectreconsent",
-    "ambition_subject.view_historicalsubjectconsent",
     "ambition_subject.view_historicalsubjectreconsent",
-    "ambition_subject.view_subjectconsent",
     "ambition_subject.view_subjectreconsent",
 ]
 pii.sort()

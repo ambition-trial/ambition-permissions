@@ -1,4 +1,4 @@
 [run]
-include = ambition_auth/*
-omit = ambition_auth/tests/*
+include = ambition_permissions/*
+omit = ambition_permissions/tests/*
 branch = 1

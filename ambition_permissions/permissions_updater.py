@@ -19,8 +19,6 @@ class PermissionsUpdater(EdcPermissionsUpdater):
     After making changes run migrate and check.
     """
 
-    extra_group_names = [RANDO, TMG]
-
     extra_pii_models = [
         "ambition_subject.subjectconsent",
         "ambition_subject.subjectreconsent",
@@ -45,39 +43,17 @@ class PermissionsUpdater(EdcPermissionsUpdater):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        # ensure in ADMINISTRATION group
-        self.ensure_users_in_group(ADMINISTRATION, users_by_groups=[CLINIC, LAB, TMG])
-        # ensure in PII group
-        self.ensure_users_in_group(PII, users_by_groups=[CLINIC])
-        # ensure in PII_VIEW group
-        self.ensure_users_in_group(PII_VIEW, users_by_groups=[LAB, PHARMACY])
-        # ensure NOT in CLINIC group
-        self.ensure_users_not_in_group(
-            PII, users_by_groups=[TMG, AUDITOR, LAB, PHARMACY]
-        )
-        # ensure NOT in PII group
-        self.ensure_users_not_in_group(
-            PII, users_by_groups=[TMG, AUDITOR, LAB, PHARMACY]
-        )
-        self.ensure_users_not_in_group(PII_VIEW, users_by_groups=[TMG, AUDITOR])
-        # ensure NOT in RANDO group
-        self.ensure_users_not_in_group(RANDO, users_by_groups=[TMG, AUDITOR, LAB])
-
         for group in Group.objects.filter(name__in=[CLINIC, TMG, LAB, AUDITOR]):
-            self.add_dashboard_permissions(group, codename="view_screening_listboard")
-            self.add_dashboard_permissions(group, codename="view_subject_listboard")
-            self.add_dashboard_permissions(group, codename="view_tmg_listboard")
-            self.add_dashboard_permissions(group, dashboard_category=LAB)
-        for group in Group.objects.filter(name__in=[TMG, AUDITOR]):
             self.add_dashboard_permissions(
-                group, codename="view_subject_review_listboard"
-            )
-
-        group = Group.objects.get(name=LAB)
-        permission = Permission.objects.get(
-            content_type__app_label="edc_dashboard", codename="view_tmg_listboard"
-        )
-        group.permissions.remove(permission)
+                group, codename="view_screening_listboard")
+            self.add_dashboard_permissions(
+                group, codename="view_subject_listboard")
+            if group.name != LAB:
+                self.add_dashboard_permissions(
+                    group, codename="view_tmg_listboard")
+            self.add_dashboard_permissions(
+                group, codename="view_subject_review_listboard")
+            self.add_dashboard_permissions(group, dashboard_category=LAB)
 
         pii_group_names = [PII, PII_VIEW]
         pii_codenames = [

@@ -44,7 +44,7 @@ def ambition_permission_check(app_configs, **kwargs):
                             "PermissionInspector.diff_codenames."
                         ),
                         obj=group_name,
-                        id="ambition_auth.W001",
+                        id="ambition_permissions.W001",
                     )
                 )
             except PermissionsInspectorError as e:
@@ -56,7 +56,7 @@ def ambition_permission_check(app_configs, **kwargs):
                             "PermissionInspector."
                         ),
                         obj=group_name,
-                        id="ambition_auth.W002",
+                        id="ambition_permissions.W002",
                     )
                 )
     return errors

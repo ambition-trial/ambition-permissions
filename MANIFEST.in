@@ -2,5 +2,5 @@ include AUTHORS CHANGES LICENSE VERSION
 include MANIFEST.in
 include *.rst
 include *.txt
-recursive-include ambition_auth/templates *
-recursive-include ambition_auth/static *
+recursive-include ambition_permissions/templates *
+recursive-include ambition_permissions/static *

@@ -1,6 +1,9 @@
 from edc_permissions.codenames import auditor
 
 auditor += [
+    "edc_dashboard.view_screening_listboard",
+    "edc_dashboard.view_subject_listboard",
+    "edc_dashboard.view_tmg_listboard",
     "ambition_ae.view_aefollowup",
     "ambition_ae.view_aeinitial",
     "ambition_ae.view_aesusar",

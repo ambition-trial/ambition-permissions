@@ -1,6 +1,11 @@
 from edc_permissions.codenames import clinic
 
 clinic += [
+    "edc_dashboard.view_screening_listboard",
+    "edc_dashboard.view_subject_listboard",
+    "edc_dashboard.view_tmg_listboard",
+    "edc_navbar.nav_subject_section",
+    "edc_navbar.nav_screening_section",
     "ambition_ae.add_aefollowup",
     "ambition_ae.add_aeinitial",
     "ambition_ae.add_aesusar",

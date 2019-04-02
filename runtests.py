@@ -10,7 +10,7 @@ from edc_test_utils import DefaultTestSettings
 from os.path import abspath, dirname, join
 
 
-app_name = 'ambition_auth'
+app_name = 'ambition_permissions'
 base_dir = dirname(abspath(__file__))
 
 DEFAULT_SETTINGS = DefaultTestSettings(
@@ -39,7 +39,7 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         'django.contrib.sites',
         'django.contrib.messages',
         'django.contrib.staticfiles',
-        'ambition_auth.apps.AppConfig',
+        'ambition_permissions.apps.AppConfig',
     ],
     add_dashboard_middleware=True,
     add_lab_dashboard_middleware=True,
