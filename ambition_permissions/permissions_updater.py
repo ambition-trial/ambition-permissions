@@ -44,15 +44,13 @@ class PermissionsUpdater(EdcPermissionsUpdater):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         for group in Group.objects.filter(name__in=[CLINIC, TMG, LAB, AUDITOR]):
-            self.add_dashboard_permissions(
-                group, codename="view_screening_listboard")
-            self.add_dashboard_permissions(
-                group, codename="view_subject_listboard")
+            self.add_dashboard_permissions(group, codename="view_screening_listboard")
+            self.add_dashboard_permissions(group, codename="view_subject_listboard")
             if group.name != LAB:
-                self.add_dashboard_permissions(
-                    group, codename="view_tmg_listboard")
+                self.add_dashboard_permissions(group, codename="view_tmg_listboard")
             self.add_dashboard_permissions(
-                group, codename="view_subject_review_listboard")
+                group, codename="view_subject_review_listboard"
+            )
             self.add_dashboard_permissions(group, dashboard_category=LAB)
 
         pii_group_names = [PII, PII_VIEW]

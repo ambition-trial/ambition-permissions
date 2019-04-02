@@ -10,26 +10,29 @@ from edc_permissions.codenames import (
     data_manager,
     everyone,
     export,
-    lab,
+    lab_view,
     pharmacy,
 )
 from edc_permissions.constants import (
-    AUDITOR,
-    LAB,
-    EVERYONE,
-    PII,
-    ADMINISTRATION,
-    PHARMACY,
     ACCOUNT_MANAGER,
+    ADMINISTRATION,
+    AUDITOR,
     CLINIC,
-    PII_VIEW,
-    EXPORT,
     DATA_MANAGER,
+    EVERYONE,
+    EXPORT,
+    LAB,
+    LAB_VIEW,
+    PHARMACY,
+    PII,
+    PII_VIEW,
 )
+
 
 from ..group_names import TMG, RANDO
 from .auditor import auditor
 from .clinic import clinic
+from .lab import lab
 from .pii_view import pii_view
 from .pii import pii
 from .rando import rando
@@ -45,6 +48,7 @@ CODENAMES = {
     EVERYONE: everyone,
     EXPORT: export,
     LAB: lab,
+    LAB_VIEW: lab_view,
     PHARMACY: pharmacy,
     PII: pii,
     PII_VIEW: pii_view,

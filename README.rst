@@ -1,22 +1,22 @@
 |pypi| |travis| |codecov| |downloads| |pyup|
 
-ambition-auth
+ambition-permissions
 -------------
 
 See also ``edc-permissions``.
 
-.. |pypi| image:: https://img.shields.io/pypi/v/ambition-auth.svg
-    :target: https://pypi.python.org/pypi/ambition-auth
+.. |pypi| image:: https://img.shields.io/pypi/v/ambition-permissions.svg
+    :target: https://pypi.python.org/pypi/ambition-permissions
     
-.. |travis| image:: https://travis-ci.com/ambition-trial/ambition-auth.svg?branch=develop
-    :target: https://travis-ci.com/ambition-trial/ambition-auth
+.. |travis| image:: https://travis-ci.com/ambition-trial/ambition-permissions.svg?branch=develop
+    :target: https://travis-ci.com/ambition-trial/ambition-permissions
     
-.. |codecov| image:: https://codecov.io/gh/ambition-trial/ambition-auth/branch/develop/graph/badge.svg
-  :target: https://codecov.io/gh/ambition-trial/ambition-auth
+.. |codecov| image:: https://codecov.io/gh/ambition-trial/ambition-permissions/branch/develop/graph/badge.svg
+  :target: https://codecov.io/gh/ambition-trial/ambition-permissions
 
-.. |downloads| image:: https://pepy.tech/badge/ambition-auth
-   :target: https://pepy.tech/project/ambition-auth
+.. |downloads| image:: https://pepy.tech/badge/ambition-permissions
+   :target: https://pepy.tech/project/ambition-permissions
 
-.. |pyup| image:: https://pyup.io/repos/github/ambition-trial/ambition-auth/shield.svg
-    :target: https://pyup.io/repos/github/ambition-trial/ambition-auth/
+.. |pyup| image:: https://pyup.io/repos/github/ambition-trial/ambition-permissions/shield.svg
+    :target: https://pyup.io/repos/github/ambition-trial/ambition-permissions/
     :alt: Updates

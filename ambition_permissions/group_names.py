@@ -1,5 +1,11 @@
-from edc_permissions.constants import ADMINISTRATION, EVERYONE, CLINIC, PII
-from edc_permissions.constants.group_names import LAB, PII_VIEW
+from edc_permissions.constants import (
+    ADMINISTRATION,
+    EVERYONE,
+    CLINIC,
+    PII,
+    LAB,
+    PII_VIEW,
+)
 
 RANDO = "RANDO"
 TMG = "TMG"
