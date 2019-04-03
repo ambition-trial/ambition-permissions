@@ -24,4 +24,3 @@ ambition-prn
 ambition-rando
 ambition-screening
 ambition-subject
-ambition-permissions
