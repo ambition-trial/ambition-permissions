@@ -60,6 +60,7 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         "edc_reference.apps.AppConfig",
         "edc_permissions.apps.AppConfig",
         'ambition_ae.apps.AppConfig',
+        'ambition_auth.apps.AppConfig',
         'ambition_lists.apps.AppConfig',
         'ambition_prn.apps.AppConfig',
         'ambition_rando.apps.AppConfig',
