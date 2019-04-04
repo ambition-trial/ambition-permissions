@@ -19,13 +19,13 @@ with open(join(dirname(abspath(__file__)), 'requirements.txt')) as f:
 os.chdir(normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
-    name='ambition-auth',
+    name='ambition-permissions',
     version=VERSION,
     author=u'Erik van Widenfelt',
     author_email='ew2789@gmail.com',
     packages=find_packages(),
     include_package_data=True,
-    url='https://github.com/ambition-trial/ambition-auth',
+    url='https://github.com/ambition-trial/ambition-permissions',
     license='GPL license, see LICENSE',
     description='Authentication and Permissions',
     long_description=README,
