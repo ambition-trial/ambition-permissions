@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from ...permissions_updater import PermissionsUpdater
+from ...updaters import update_permissions
 
 
 class Command(BaseCommand):
@@ -9,4 +9,4 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        PermissionsUpdater()
+        update_permissions()
