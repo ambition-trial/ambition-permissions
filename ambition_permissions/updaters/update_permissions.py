@@ -26,7 +26,8 @@ def update_permissions():
 
     create_edc_dashboard_permissions(
         extra_codename_tpls=[
-            ("edc_dashboard.view_screening_listboard", "Can view Screening Listboard"),
+            ("edc_dashboard.view_screening_listboard",
+             "Can view Screening Listboard"),
             ("edc_dashboard.view_subject_listboard", "Can view Subject Listboard"),
             ("edc_dashboard.view_tmg_listboard", "Can view TMG Listboard"),
         ]
