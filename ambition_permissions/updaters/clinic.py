@@ -39,6 +39,7 @@ def extra_clinic_group_permissions():
         codenames=[
             "edc_navbar.nav_subject_section",
             "edc_navbar.nav_screening_section",
+            "edc_dashboard.view_ae_listboard",
             "edc_dashboard.view_subject_review_listboard",
             "edc_dashboard.view_screening_listboard",
             "edc_dashboard.view_subject_listboard",
