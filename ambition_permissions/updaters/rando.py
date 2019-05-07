@@ -15,7 +15,8 @@ def update_rando_group_permissions():
     group = Group.objects.get(name=group_name)
     group.permissions.clear()
 
-    add_permissions_to_group_by_model(group, "ambition_rando.randomizationlist")
+    add_permissions_to_group_by_model(
+        group, "ambition_rando.randomizationlist")
     make_view_only_model(group, "ambition_rando.randomizationlist")
 
     add_permissions_to_group_by_codenames(
@@ -24,3 +25,4 @@ def update_rando_group_permissions():
 
     remove_pii_permissions_from_group(group, extra_pii_models=pii_models)
     remove_historical_group_permissions(group)
+    return group_name

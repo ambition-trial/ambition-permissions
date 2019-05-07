@@ -4,7 +4,8 @@ from edc_permissions.utils import (
     create_edc_navbar_permissions,
 )
 
-from ..group_names import TMG, RANDO
+from ..group_names import TMG, RANDO, AE_REVIEW
+from .ae_review import update_ae_review_group_permissions
 from .auditor import extra_auditor_group_permissions
 from .clinic import extra_clinic_group_permissions
 from .lab import extra_lab_group_permissions, extra_lab_view_group_permissions
@@ -19,6 +20,7 @@ extra_updaters = [
     extra_lab_view_group_permissions,
     update_rando_group_permissions,
     update_tmg_group_permissions,
+    update_ae_review_group_permissions,
 ]
 
 
@@ -45,5 +47,5 @@ def update_permissions():
     PermissionsUpdater(
         extra_pii_models=extra_pii_models,
         extra_updaters=extra_updaters,
-        extra_group_names=[RANDO, TMG],
+        extra_group_names=[AE_REVIEW, RANDO, TMG],
     )

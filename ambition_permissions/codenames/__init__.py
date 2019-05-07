@@ -29,7 +29,8 @@ from edc_permissions.constants import (
 )
 
 
-from ..group_names import TMG, RANDO
+from ..group_names import TMG, RANDO, AE_REVIEW
+from .ae_review import ae_review
 from .auditor import auditor
 from .clinic import clinic
 from .lab import lab
@@ -42,6 +43,7 @@ from .tmg import tmg
 CODENAMES = {
     ACCOUNT_MANAGER: account_manager,
     ADMINISTRATION: administration,
+    AE_REVIEW: ae_review,
     AUDITOR: auditor,
     CLINIC: clinic,
     DATA_MANAGER: data_manager,
