@@ -18,6 +18,7 @@ from edc_permissions.codenames import pharmacy, export, data_manager, administra
 from edc_permissions.utils import compare_codenames_for_group
 
 from ..codenames import (
+    ae_review,
     account_manager,
     auditor,
     clinic,
@@ -27,9 +28,10 @@ from ..codenames import (
     pii,
     pii_view,
     rando,
+    tmg,
     CODENAMES,
 )
-from ..group_names import RANDO
+from ..group_names import RANDO, AE_REVIEW, TMG
 from ..updaters import update_permissions
 
 
@@ -41,8 +43,15 @@ class TestPermissions(TestCase):
         # show_permissions_for_group(group_name=PII_VIEW)
         compare_codenames_for_group(group_name=PII_VIEW, expected=pii_view)
 
-    def test_pharmacy(self):
+    def test_ae_review(self):
+        update_permissions()
+        compare_codenames_for_group(group_name=AE_REVIEW, expected=ae_review)
 
+    def test_tmg(self):
+        update_permissions()
+        compare_codenames_for_group(group_name=TMG, expected=tmg)
+
+    def test_pharmacy(self):
         update_permissions()
         compare_codenames_for_group(group_name=PHARMACY, expected=pharmacy)
 
@@ -56,7 +65,8 @@ class TestPermissions(TestCase):
 
     def test_data_manager(self):
         update_permissions()
-        compare_codenames_for_group(group_name=DATA_MANAGER, expected=data_manager)
+        compare_codenames_for_group(
+            group_name=DATA_MANAGER, expected=data_manager)
 
     def test_auditors(self):
         update_permissions()
@@ -64,7 +74,8 @@ class TestPermissions(TestCase):
 
     def test_administrations(self):
         update_permissions()
-        compare_codenames_for_group(group_name=ADMINISTRATION, expected=administration)
+        compare_codenames_for_group(
+            group_name=ADMINISTRATION, expected=administration)
 
     def test_account_manager(self):
         update_permissions()
@@ -88,4 +99,5 @@ class TestPermissions(TestCase):
     def test_permissions_updater(self):
         update_permissions()
         for group_name, expected in CODENAMES.items():
-            compare_codenames_for_group(group_name=group_name, expected=expected)
+            compare_codenames_for_group(
+                group_name=group_name, expected=expected)

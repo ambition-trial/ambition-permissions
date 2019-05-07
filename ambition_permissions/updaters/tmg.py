@@ -70,6 +70,8 @@ def update_tmg_group_permissions():
     add_permissions_to_group_by_codenames(
         group,
         codenames=[
+            "edc_navbar.nav_ae_section",
+            "edc_dashboard.view_ae_listboard",
             "edc_navbar.nav_tmg_section",
             "edc_navbar.nav_subject_section",
             "edc_navbar.nav_screening_section",
@@ -82,3 +84,4 @@ def update_tmg_group_permissions():
 
     remove_pii_permissions_from_group(group, extra_pii_models=pii_models)
     remove_historical_group_permissions(group)
+    return group_name
