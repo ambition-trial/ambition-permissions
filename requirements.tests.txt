@@ -6,6 +6,7 @@ edc-appointment
 edc-auth
 edc-dashboard
 edc-export
+edc_identifier
 edc-lab
 edc-lab-dashboard
 edc-locator
