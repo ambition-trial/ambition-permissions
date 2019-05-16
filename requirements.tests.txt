@@ -6,6 +6,7 @@ edc-appointment
 edc-auth
 edc-dashboard
 edc-export
+edc_identifier
 edc-lab
 edc-lab-dashboard
 edc-locator
@@ -24,3 +25,4 @@ ambition-prn
 ambition-rando
 ambition-screening
 ambition-subject
+ambition-dashboard

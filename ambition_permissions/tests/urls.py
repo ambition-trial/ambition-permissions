@@ -16,6 +16,5 @@ urlpatterns = [
     path("ambition_rando/", include("ambition_rando.urls")),
     path("ambition_screening/", include("ambition_screening.urls")),
     path("ambition_subject/", include("ambition_subject.urls")),
-    path("administration/", AdministrationView.as_view(),
-         name="administration_url"),
+    path("administration/", AdministrationView.as_view(), name="administration_url"),
 ]
