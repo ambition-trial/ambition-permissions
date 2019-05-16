@@ -1,7 +1,7 @@
 |pypi| |travis| |codecov| |downloads| |pyup|
 
 ambition-permissions
--------------
+--------------------
 
 See also ``edc-permissions``.
 
