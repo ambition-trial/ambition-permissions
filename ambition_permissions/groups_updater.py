@@ -13,5 +13,4 @@ class GroupsUpdater(Base):
         self.ensure_users_in_group(ADMINISTRATION, users_by_groups=[TMG])
         self.ensure_users_not_in_group(PII, users_by_groups=[TMG])
         self.ensure_users_not_in_group(PII_VIEW, users_by_groups=[TMG])
-        self.ensure_users_not_in_group(
-            RANDO, users_by_groups=[TMG, AUDITOR, LAB])
+        self.ensure_users_not_in_group(RANDO, users_by_groups=[TMG, AUDITOR, LAB])
