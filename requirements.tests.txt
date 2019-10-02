@@ -2,6 +2,7 @@ faker
 model-mommy
 django-crypto-fields
 edc-action-item
+edc-adverse-event
 edc-appointment
 edc-auth
 edc-dashboard
