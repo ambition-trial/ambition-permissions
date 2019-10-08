@@ -17,6 +17,7 @@ tmg = [
     "ambition_ae.view_recurrencesymptom",
     "ambition_lists.view_abnormalresultsreason",
     "ambition_lists.view_antibiotic",
+    "ambition_lists.view_arvregimens",
     "ambition_lists.view_cxrtype",
     "ambition_lists.view_day14medication",
     "ambition_lists.view_infiltratelocation",

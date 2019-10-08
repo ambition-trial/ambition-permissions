@@ -13,7 +13,6 @@ from edc_permissions import (
     PII,
     PII_VIEW,
 )
-
 from edc_permissions.codenames import pharmacy, export, data_manager, administration
 from edc_permissions.utils import compare_codenames_for_group
 
