@@ -1,13 +1,6 @@
 from edc_permissions.codenames import auditor
 
 auditor += [
-    "edc_dashboard.view_screening_listboard",
-    "edc_dashboard.view_subject_listboard",
-    "edc_dashboard.view_tmg_listboard",
-    "edc_navbar.nav_ae_section",
-    "edc_navbar.nav_screening_section",
-    "edc_navbar.nav_subject_section",
-    "edc_navbar.nav_tmg_section",
     "ambition_ae.view_aefollowup",
     "ambition_ae.view_aeinitial",
     "ambition_ae.view_aesusar",
@@ -39,11 +32,13 @@ auditor += [
     "ambition_prn.view_amphotericinmisseddoses",
     "ambition_prn.view_deathreport",
     "ambition_prn.view_deathreporttmg",
+    "ambition_prn.view_deathreporttmgsecond",
     "ambition_prn.view_fluconazolemisseddoses",
     "ambition_prn.view_flucytosinemisseddoses",
     "ambition_prn.view_historicalamphotericinmisseddoses",
     "ambition_prn.view_historicaldeathreport",
     "ambition_prn.view_historicaldeathreporttmg",
+    "ambition_prn.view_historicaldeathreporttmgsecond",
     "ambition_prn.view_historicalfluconazolemisseddoses",
     "ambition_prn.view_historicalflucytosinemisseddoses",
     "ambition_prn.view_historicalonschedule",
@@ -108,5 +103,12 @@ auditor += [
     "ambition_subject.view_week2",
     "ambition_subject.view_week4",
     "ambition_subject.view_week4diagnoses",
+    "edc_dashboard.view_screening_listboard",
+    "edc_dashboard.view_subject_listboard",
+    "edc_dashboard.view_tmg_listboard",
+    "edc_navbar.nav_ae_section",
+    "edc_navbar.nav_screening_section",
+    "edc_navbar.nav_subject_section",
+    "edc_navbar.nav_tmg_section",
 ]
 auditor.sort()
