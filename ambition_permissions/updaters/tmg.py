@@ -43,7 +43,8 @@ def update_tmg_group_permissions():
     make_view_only_app_label(group, "ambition_lists")
 
     # ambition_prn
-    add_permissions_to_group_by_model(group, "ambition_prn.deathreporttmg")
+    add_permissions_to_group_by_model(group, "ambition_ae.deathreporttmg")
+    add_permissions_to_group_by_model(group, "ambition_ae.deathreporttmgsecond")
     add_permissions_to_group_by_codenames(
         group,
         codenames=[
@@ -55,7 +56,7 @@ def update_tmg_group_permissions():
             "ambition_prn.view_historicalfluconazolemisseddoses",
             "ambition_prn.view_historicalflucytosinemisseddoses",
             "ambition_prn.view_historicalsignificantdiagnoses",
-            "ambition_prn.view_deathreport",
+            "ambition_ae.view_deathreport",
         ],
     )
     add_permissions_to_group_by_codenames(
