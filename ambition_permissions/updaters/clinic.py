@@ -5,7 +5,6 @@ from edc_permissions.utils import (
     make_view_only_app_label,
     make_view_only_model,
     remove_historical_group_permissions,
-    remove_permissions_by_model,
     remove_pii_permissions_from_group,
 )
 
@@ -30,8 +29,8 @@ def extra_clinic_group_permissions():
     make_view_only_app_label(group, "ambition_lists")
 
     make_view_only_model(group, "ambition_ae.aetmg")
-
-    remove_permissions_by_model(group, "ambition_prn.deathreporttmg")
+    make_view_only_model(group, "ambition_ae.deathreporttmg")
+    make_view_only_model(group, "ambition_ae.deathreporttmgsecond")
 
     # nav and dashboard
     add_permissions_to_group_by_codenames(
